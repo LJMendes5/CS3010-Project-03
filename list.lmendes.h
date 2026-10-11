@@ -1,4 +1,6 @@
 // jdh CS 3010 Fall 2026
+#pragma once // I don't know what this does but the compiler got mad at me and told me to add it
+// I think it makes it only included once in compilation
 
 typedef struct ListNodeStruct {
   void *data;

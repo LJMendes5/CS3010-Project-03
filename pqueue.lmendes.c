@@ -1,16 +1,18 @@
 #include "pqueue.lmendes.h"
 #include <stdlib.h>
 
-void comparePriority(void *item1, void *item2, int *result) {
+int comparePriority(void *item1, void *item2, void *result) {
     PQueueEntry *entry1 = (PQueueEntry *) item1;
     PQueueEntry *entry2 = (PQueueEntry *) item2;
+    int *res = (int *) result;
 
     if (entry1->priority < entry2->priority)
-        *result = -1;
+        *res = -1;
     else if (entry1->priority > entry2->priority)
-        *result = 1;
+        *res = 1;
     else
-        *result = 0;
+        *res = 0;
+    return 0;
 }
 
 int enqueue(PQueueNode **pqueue, int priority, void *data) {
@@ -56,4 +58,25 @@ void printQueue(PQueueNode *pqueue, void (*printFunction)(void *)) {
         printFunction(((PQueueEntry*) pqueue->data)->data);
         pqueue = pqueue->next;
     }
+}
+
+int getMinPriority(PQueueNode *pqueue) {
+    if (pqueue == NULL) {
+        return -1;
+    }
+
+    PQueueEntry *entry = (PQueueEntry *) pqueue->data;
+    return entry->priority;
+}
+
+int queueLength(PQueueNode *pqueue) {
+    int count = 0;
+
+    while (pqueue != NULL) {
+        count++;
+        pqueue = pqueue->next;
+    }
+
+    return count;
+
 }

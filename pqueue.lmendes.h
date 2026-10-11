@@ -10,7 +10,7 @@ typedef struct {
     void *data;
 } PQueueEntry;
 
-void comparePriority(void *item1, void *item2, int *result);
+int comparePriority(void *item1, void *item2, void *result);
 int enqueue(PQueueNode **pqueue, int priority, void *data);
 void *dequeue(PQueueNode **pqueue);
 void *peek(PQueueNode *pqueue);
